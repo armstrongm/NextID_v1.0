@@ -1,0 +1,6 @@
+com\company\iam\dto\LoginRequest.class
+com\company\iam\config\SecurityConfig.class
+com\company\iam\controller\AuthController.class
+com\company\iam\controller\HealthController.class
+com\company\iam\exception\GlobalExceptionHandler.class
+com\company\iam\IamApplication.class

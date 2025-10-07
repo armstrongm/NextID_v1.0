@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
+backend/target/
+frontend/build/
+*.jar
+*.war
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+.project
+.classpath
+.settings/
+
+# Environment files
+.env
+*.env.local
+*.env.development
+*.env.production
+
+# Logs
+*.log
+logs/
+backend/logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Docker volumes
+postgres_data/
+backend_logs/
+pgadmin_data/
+
+# Backups
+backups/*.sql
+backups/*.zip
+
+# Sensitive data
+**/application-local.yml
+**/application-prod.yml
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*~

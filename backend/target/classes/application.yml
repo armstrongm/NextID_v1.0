@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: iam-service
+  datasource:
+    url: jdbc:postgresql://postgres:5432/${DB_NAME:iam_db}
+    username: ${DB_USER:iam_user}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: when-authorized
+
+logging:
+  level:
+    com.company.iam: INFO
