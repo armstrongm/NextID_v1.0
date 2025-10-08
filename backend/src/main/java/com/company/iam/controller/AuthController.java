@@ -1,7 +1,14 @@
 package com.company.iam.controller;
 
+import com.company.iam.dto.AuthResponse;
 import com.company.iam.dto.LoginRequest;
+import com.company.iam.dto.RegisterRequest;
+import com.company.iam.model.AuthUser;
+import com.company.iam.service.AuthenticationService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -12,37 +19,49 @@ import java.util.Map;
 @CrossOrigin(origins = "*")
 public class AuthController {
 
+    @Autowired
+    private AuthenticationService authenticationService;
+
     @PostMapping("/login")
-    public ResponseEntity<Map<String, Object>> login(@RequestBody LoginRequest request) {
-        Map<String, Object> response = new HashMap<>();
-        
-        if ("admin".equals(request.getUsername()) && "admin123".equals(request.getPassword())) {
-            response.put("token", "demo-jwt-token-12345");
-            response.put("username", "admin");
-            response.put("email", "admin@company.com");
-            response.put("role", "ADMIN");
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest request) {
+        try {
+            AuthResponse response = authenticationService.authenticate(request);
             return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            Map<String, String> error = new HashMap<>();
+            error.put("error", "Invalid username or password");
+            return ResponseEntity.status(401).body(error);
         }
-        
-        return ResponseEntity.status(401).body(Map.of("error", "Invalid credentials"));
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Map<String, Object>> register(@RequestBody Map<String, String> request) {
-        Map<String, Object> response = new HashMap<>();
-        response.put("token", "demo-jwt-token-67890");
-        response.put("username", request.get("username"));
-        response.put("email", request.get("email"));
-        response.put("role", "USER");
-        return ResponseEntity.ok(response);
+    public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest request) {
+        try {
+            AuthResponse response = authenticationService.register(request);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            Map<String, String> error = new HashMap<>();
+            error.put("error", e.getMessage());
+            return ResponseEntity.badRequest().body(error);
+        }
     }
 
     @GetMapping("/me")
-    public ResponseEntity<Map<String, String>> getCurrentUser() {
-        Map<String, String> response = new HashMap<>();
-        response.put("username", "admin");
-        response.put("email", "admin@company.com");
-        response.put("role", "ADMIN");
-        return ResponseEntity.ok(response);
+    public ResponseEntity<?> getCurrentUser(Authentication authentication) {
+        try {
+            String username = authentication.getName();
+            AuthUser user = authenticationService.getCurrentUser(username);
+            
+            Map<String, Object> response = new HashMap<>();
+            response.put("username", user.getUsername());
+            response.put("email", user.getEmail());
+            response.put("role", user.getRole().name());
+            
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            Map<String, String> error = new HashMap<>();
+            error.put("error", "User not found");
+            return ResponseEntity.status(404).body(error);
+        }
     }
 }
