@@ -4,17 +4,17 @@ Write-Host "====================================" -ForegroundColor Cyan
 Write-Host ""
 
 # Step 1: Create all backend files
-Write-Host "Step 1: Creating Backend Implementation..." -ForegroundColor Yellow
-& .\create-jwt-implementation.ps1
-& .\create-user-service.ps1
-& .\create-user-dto-service.ps1
-& .\create-services-impl.ps1
-& .\create-controllers.ps1
+#Write-Host "Step 1: Creating Backend Implementation..." -ForegroundColor Yellow
+#& .\create-jwt-implementation.ps1
+#& .\create-user-service.ps1
+#& .\create-user-dto-service.ps1
+#& .\create-services-impl.ps1
+#& .\create-controllers.ps1
 
 # Step 2: Create frontend API integration
 Write-Host ""
 Write-Host "Step 2: Creating Frontend API Integration..." -ForegroundColor Yellow
-& .\create-frontend-api.ps1
+#& .\create-frontend-api.ps1
 
 # Step 3: Build backend
 Write-Host ""

@@ -18,8 +18,8 @@ C:\myNextJsProject\nextID\backend\src\main\java\com\company\iam\dto\RegisterRequ
 C:\myNextJsProject\nextID\backend\src\main\java\com\company\iam\dto\LoginRequest.java
 C:\myNextJsProject\nextID\backend\src\main\java\com\company\iam\repository\UserRepository.java
 C:\myNextJsProject\nextID\backend\src\main\java\com\company\iam\security\JwtService.java
-C:\myNextJsProject\nextID\backend\src\main\java\com\company\iam\security\CustomUserDetailsService.java
 C:\myNextJsProject\nextID\backend\src\main\java\com\company\iam\model\AdAccount.java
+C:\myNextJsProject\nextID\backend\src\main\java\com\company\iam\config\DataInitializer.java
 C:\myNextJsProject\nextID\backend\src\main\java\com\company\iam\dto\UserDTO.java
 C:\myNextJsProject\nextID\backend\src\main\java\com\company\iam\repository\AuthUserRepository.java
 C:\myNextJsProject\nextID\backend\src\main\java\com\company\iam\service\GroupService.java

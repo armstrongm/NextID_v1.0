@@ -48,22 +48,58 @@ export const authAPI = {
 
 // Users API
 export const usersAPI = {
-  getAll: (params) => api.get('/users', { params }),
-  getById: (id) => api.get(`/users/${id}`),
-  create: (user) => api.post('/users', user),
-  update: (id, user) => api.put(`/users/${id}`, user),
-  delete: (id) => api.delete(`/users/${id}`),
-  getStats: () => api.get('/users/stats'),
+  getAll: async (params) => {
+    const response = await api.get('/users', { params });
+    return response.data;
+  },
+  getById: async (id) => {
+    const response = await api.get(`/users/${id}`);
+    return response.data;
+  },
+  create: async (user) => {
+    const response = await api.post('/users', user);
+    return response.data;
+  },
+  update: async (id, user) => {
+    const response = await api.put(`/users/${id}`, user);
+    return response.data;
+  },
+  delete: async (id) => {
+    const response = await api.delete(`/users/${id}`);
+    return response.data;
+  },
 };
 
 // Groups API
 export const groupsAPI = {
-  getAll: (params) => api.get('/groups', { params }),
-  getById: (id) => api.get(`/groups/${id}`),
-  create: (group) => api.post('/groups', group),
-  update: (id, group) => api.put(`/groups/${id}`, group),
-  delete: (id) => api.delete(`/groups/${id}`),
-  getStats: () => api.get('/groups/stats'),
+  getAll: async (params) => {
+    const response = await api.get('/groups', { params });
+    return response.data;
+  },
+  getById: async (id) => {
+    const response = await api.get(`/groups/${id}`);
+    return response.data;
+  },
+  create: async (group) => {
+    const response = await api.post('/groups', group);
+    return response.data;
+  },
+  update: async (id, group) => {
+    const response = await api.put(`/groups/${id}`, group);
+    return response.data;
+  },
+  delete: async (id) => {
+    const response = await api.delete(`/groups/${id}`);
+    return response.data;
+  },
+};
+
+// Dashboard API
+export const dashboardAPI = {
+  getStats: async () => {
+    const response = await api.get('/dashboard/stats');
+    return response.data;
+  },
 };
 
 export default api;
