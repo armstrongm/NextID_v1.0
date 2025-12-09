@@ -50,7 +50,7 @@ export const authAPI = {
 export const usersAPI = {
   getAll: async (params) => {
     const response = await api.get('/users', { params });
-    return response.data;
+    return response.data.content || [];  // Extract content array
   },
   getById: async (id) => {
     const response = await api.get(`/users/${id}`);
@@ -74,7 +74,7 @@ export const usersAPI = {
 export const groupsAPI = {
   getAll: async (params) => {
     const response = await api.get('/groups', { params });
-    return response.data;
+    return response.data.content || [];  // Extract content array
   },
   getById: async (id) => {
     const response = await api.get(`/groups/${id}`);
